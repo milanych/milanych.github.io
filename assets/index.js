@@ -43,6 +43,14 @@ const result = () => {
   }
 }
 
+//Reset button
+const reset = () => {
+  document.getElementById('currentPoints').value = ''
+  document.getElementById('currentGoals').value = ''
+  document.getElementById('gamesPlayed').value = ''
+  document.getElementById('gamesRemain').value = ''
+}
+
 let urlData = 'assets/leaders.json'
 let numberOfGames = 82
 //Current games played
@@ -70,13 +78,7 @@ selectElement.addEventListener("change", (event) => {
   document.getElementById('gamesRemain').value = (numberOfGames - event.target.value.slice(-2));
 });
 
-//Reset button
-const reset = () => {
-  document.getElementById('currentPoints').value = ''
-  document.getElementById('currentGoals').value = ''
-  document.getElementById('gamesPlayed').value = ''
-  document.getElementById('gamesRemain').value = ''
-}
+
 
 document.querySelector("body > div.data-container.fader").style.opacity = 1;
 
