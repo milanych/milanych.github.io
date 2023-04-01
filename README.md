@@ -1,5 +1,4 @@
-# Estimated points and goals by NHL player
+# Projects by Vadim Zotov (Milanych)
 
-Data grabbed from [sportradar.com](https://developer.sportradar.com/docs/read/hockey/NHL_v7).
-
-*Thanks to NHL for fun!*
+1. [Hockey NHL statistics](https://milanych.github.io/stat-data)
+2. [Dynamic generated quiz](https://milanych.github.io/quiz)
