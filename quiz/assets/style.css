@@ -13,6 +13,7 @@ body {
   background: linear-gradient(135deg, #21A0A055 25%, transparent 25%) -8px 0/ 16px 16px, linear-gradient(225deg, #21A0A0 25%, transparent 25%) -8px 0/ 16px 16px, linear-gradient(315deg, #21A0A055 25%, transparent 25%) 0px 0/ 16px 16px, linear-gradient(45deg, #21A0A0 25%, #e5e5f7 25%) 0px 0/ 16px 16px;
   animation: moveIt 20s linear infinite;
 }
+
 @keyframes moveIt {
   from {background-position: top;}
   to {background-position: bottom;}
@@ -60,6 +61,8 @@ body {
 }
 .questionHeading {
   margin-bottom: 1rem;
+  white-space: nowrap;
+  font-size: 1.75rem;
 }
 .radio {
   margin-right: 5px;
@@ -82,9 +85,41 @@ div#attention {
   .container #nextButton {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    height: 15dvh;
+    align-items: center;
+    font-size: xx-large;
   }
   .container {
-    min-height: 100dvh;
-    min-width: 100%;
+    width: 90%;
+    min-height: 90dvh;
+    min-width: 90%;
   }
+  .questionDescription {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  .questionVariants {
+    font-size: 1.25rem;
+  }
+  .questionVariants li {
+    margin-bottom: 1rem;
+  }
+  .headingDivider {
+    background: #21A0A0;
+    width: 1px;
+    height: 1px;
+    display: block;
+    margin: 0.75rem 0;
+    transform: scaleX(60);
+    transform-origin: left;
+    animation: headingDivider-animate 1s ease;
+  }
+  @keyframes headingDivider-animate {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(60);
+    }
+}
 }

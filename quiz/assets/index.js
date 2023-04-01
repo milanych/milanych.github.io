@@ -97,7 +97,7 @@ const createRepeatLink = () => {
 }
 
 function questionIterator() {
-  iterator.innerHTML = ` (${i} / ${quantity})`
+  iterator.innerHTML = ` (${i}/${quantity})`
   document.querySelector(".questionHeading").appendChild(iterator)
   i++;
 }
@@ -146,8 +146,3 @@ function answerChosen() {
   })
 }
 answerChosen();
-
-
-document.addEventListener('DOMContentLoaded', () => {
-  fetchTriviaQuestion();
-});
