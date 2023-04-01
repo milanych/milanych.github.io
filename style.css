@@ -1,0 +1,6 @@
+body {
+  background-image: url(/background.png), url(https://source.unsplash.com/random/900%C3%97600);
+  background-position: right top, center center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, cover;
+}
