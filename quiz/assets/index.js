@@ -30,16 +30,6 @@ let indexOfCorrectAnswer;
 let data = [];
 
 
-//API call
-async function fetchTriviaQuestion() {
-  const response = await fetch(`https://the-trivia-api.com/api/questions?limit=${quantity}`);
-  const jsonData = await response.json();
-  jsonData.forEach(el => {
-    data.push(el)
-  })
-  processData(data)
-}
-
 //Question generator
 function processData(data) {
   document.querySelector("#questionDescription").innerHTML = data[currentQuestion].question;
@@ -92,8 +82,8 @@ const createRepeatLink = () => {
   let repeatLink = document.createElement('a');
   repeatLink.href = '.';
   repeatLink.innerText = 'Repeat?'
-  repeatLink.setAttribute('id', 'nextButton');
-  document.querySelector('.questionBody').after(repeatLink)
+  repeatLink.setAttribute('id', 'repeatButton');
+  document.querySelector('.questionBody').after(repeatLink);
 }
 
 function questionIterator() {

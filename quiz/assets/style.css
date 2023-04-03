@@ -32,7 +32,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.container #nextButton {
+.container #nextButton, .container #repeatButton {
   display: flex;
   justify-content: center;
   border: 0;
@@ -45,7 +45,7 @@ body {
   color:white;
   text-decoration: none;
 }
-.container #nextButton:hover {
+.container #nextButton:hover, .container #repeatButton:hover {
   background-color: #046865;
   transition: .25s;
 }

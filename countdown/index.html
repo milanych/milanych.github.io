@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Countdown Timer</title>
+  <link href="./assets/style.css" rel="stylesheet">
+</head>
+<body>
+  <form id="changeDate">
+    <a id="dateLeft">← <span>Left</span></a>
+    <label>
+      <input 
+      id="datePicker"
+      type="date"
+      value="2023-05-04" />
+    </label>
+    <a id="dateRight"><span>Right</span> →</a>
+</form>
+
+  <div class="container">
+    <div class="container_time">
+      <span class="time" id="days">00</span>
+      <span class="text" id="days_text">days</span>
+    </div>
+    <div class="container_time">
+      <span class="time" id="hours">00</span>
+      <span class="text" id="hours_text">hours</span>
+    </div>
+    <div class="container_time">
+      <span class="time" id="minutes">00</span>
+      <span class="text" id="minutes_text">minutes</span>
+    </div>
+    <div class="container_time">
+      <span class="time" id="seconds">00</span>
+      <span class="text" id="seconds_text">seconds</span>
+    </div>
+  </div>
+  <script async src="./assets/index.js"></script>
+</body>
+</html>

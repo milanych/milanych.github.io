@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  font-family: sans-serif;
+  margin: 0;
+  background: url(bg.webp) no-repeat center center/cover;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.container_time {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+}
+.time {
+  font-size: 5rem;
+}
+.text {
+  font-size: 1.25rem;
+  color: grey;
+  text-transform: uppercase;
+}
+#changeDate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+#changeDate a {
+  margin: 0 1rem;
+}
+#changeDate a > span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#changeDate a:hover {
+  color: blue;
+  transition: .25s;
+}
+input#datePicker {
+    font-size: 1.25rem;
+}
