@@ -6,13 +6,28 @@ body {
   height: 100dvh;
   font-family: sans-serif;
   margin: 0;
-  background: url(bg.webp) no-repeat center center/cover;
+  /* background: url(bg.webp) no-repeat center center/cover; */
+}
+#countdownTimer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 360px;
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+.container_realtime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  height: 100%;
+  position: relative;
 }
 .container_time {
   display: flex;
@@ -47,4 +62,113 @@ body {
 }
 input#datePicker {
     font-size: 1.25rem;
+}
+
+#changeTimers {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid grey;
+    padding: 1rem;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#changeTimers a#showCountdownTime {
+  border-top: 1px solid #0000ff;
+  color: #0000ff;
+}
+#changeTimers a {
+    padding-top: 1rem;
+    border-top: 1px solid #0000ff00;
+  }
+  
+  #changeTimers a:hover {
+  border-top: 1px solid #0000ff;
+  color: #0000ff;
+  cursor: pointer;
+  transition: .25s;
+}
+.realTimer-body {
+  border-radius: 50%;
+  height: 250px;
+  width:  250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset -1px -1px 0px rgba(255,255,255,0.3), inset 1px 1px 2px rgba(0,0,0,0.8);
+  font-size: 2rem;
+}
+#realTimeTimer {
+  min-height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  margin-left: 200px;
+}
+
+.realTimer-button {
+  padding: 1rem;
+  border: 1px solid grey;
+  cursor: pointer;
+  width: 76px;
+}
+.realTimer-button:hover {
+  background-color: blue;
+  transition: .25s;
+  color: white;
+}
+#realTimer-lap, #realTimer-reset {
+  display: none;
+}
+.realTimer-laps {
+  height: 100%;
+  width: 200px;
+  border-radius: 1rem;
+}
+.realTimer-laps li {
+list-style-type: none;
+font-style: italic;
+margin-bottom: .5rem;
+font-size: .75rem;
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+#realTimer-rotate {
+      position: absolute;
+    top: 20px;
 }

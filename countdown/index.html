@@ -8,17 +8,38 @@
   <link href="./assets/style.css" rel="stylesheet">
 </head>
 <body>
+  <div id="changeTimers">
+    <a id="showCountdownTime">Countdown Timer</a>
+    <a id="showRealTimeTimer">Stopwatch Timer</a>
+  </div>
+  <div id="realTimeTimer">
+    <div class="container_realtime">
+      <div class="realTimer-body" id="realTimer-rotate"></div>
+      <div class="realTimer-body" id="realTimer-body">
+        00:00:000
+      </div>
+      <div class="realTimer-buttons" id="realTimer-buttons">
+        <button class="realTimer-button" id="realTimer-start">Start</button>
+        <button disabled class="realTimer-button" id="realTimer-stop">Stop</button>
+        <button class="realTimer-button" id="realTimer-reset">Reset</button>
+        <button class="realTimer-button" id="realTimer-lap">Lap</button>
+      </div>
+    </div>
+    <div class="realTimer-laps">
+      <ul id="realTimer-laps"></ul>
+    </div>
+  </div>
+  <div id="countdownTimer">
   <form id="changeDate">
-    <a id="dateLeft">← <span>Left</span></a>
+    <a id="dateLeft">← <span>Previous</span></a>
     <label>
       <input 
       id="datePicker"
       type="date"
       value="2023-05-04" />
     </label>
-    <a id="dateRight"><span>Right</span> →</a>
-</form>
-
+    <a id="dateRight"><span>Next</span> →</a>
+  </form>
   <div class="container">
     <div class="container_time">
       <span class="time" id="days">00</span>
@@ -37,6 +58,7 @@
       <span class="text" id="seconds_text">seconds</span>
     </div>
   </div>
+</div>
   <script async src="./assets/index.js"></script>
 </body>
 </html>
