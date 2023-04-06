@@ -5,11 +5,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: sans-serif;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
 }
 .container {
   min-width: 480px;
   height: 360px;
-  border: 1px solid rgb(113, 104, 238);
   background-color: white;
   display: flex;
   justify-content: space-between;
@@ -18,11 +21,10 @@ body {
 .container-links {
   display: flex;
   flex-direction: column;
-  width: 25dvw;
   border-right: 1px solid grey;
-  justify-content: center;
+  justify-content: space-evenly;
   text-transform: uppercase;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
@@ -33,11 +35,13 @@ body {
   text-align: center;
   border-bottom: 1px solid grey;
   background-color: white;
-}
-.container-links a:first-child {
+  text-align: left;
   border-top: 1px solid grey
 }
-
+.container-links a:hover {
+  transition: .5s;
+  text-decoration: underline;
+}
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;
