@@ -107,20 +107,28 @@ margin-bottom: .5em;
     background: #B8A71D;
     padding: 0.25em;
     color: white;
-    margin-bottom: 1rem;
     display: block;
     width: fit-content;
-    border-radius: 0.25em;
-    font-family: 'Calibri';
+    font-family: 'Calibri', sans-serif;
+  }
+#categoriesContainer {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid #B8A71D;
+  border-radius: .25em;
+  width: fit-content;
 }
 #chooseAnotherCategories {
-    margin-left: 0.5rem;
     background: white;
-    color: initial;
+    color: #B8A71D;
     padding: 0px 5px;
-    border-radius: 50%;
     cursor: pointer;
     text-decoration: none;
+    font-size: 1.25rem;
+}
+#chooseAnotherCategories:hover {
+    text-decoration: underline;
 }
 @media (max-width: 480px) {
   .questionBody {

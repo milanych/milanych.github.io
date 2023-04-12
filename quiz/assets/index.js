@@ -50,7 +50,7 @@ async function fetchTriviaQuestion() {
   chooseAnotherCategories.id = 'chooseAnotherCategories';
   chooseAnotherCategories.innerHTML = '×';
   chooseAnotherCategories.href = '.';
-  document.getElementById('currentCategories').append(chooseAnotherCategories)
+  document.getElementById('categoriesContainer').append(chooseAnotherCategories)
   let chooseAnotherCategoriesButton = document.querySelector("#chooseAnotherCategories");
   chooseAnotherCategoriesButton.addEventListener('click', () => {
     console.log('hello')
