@@ -1,40 +1,97 @@
+//Global variables
+const questionList = document.querySelector('.quizBody')
+const submitButton = document.querySelector("#nextButton");
+const answers = document.querySelectorAll('.answer')
+let category = document.querySelectorAll('.category')
+let iterator = document.createElement('span');
+let result = 0;
+let i = 1;
+let answerLetters = ['a', 'b', 'c', 'd'];
+let indexOfCorrectAnswer;
+let data = [];
+let currentQuestion = 0;
+let categoriesData = [];
+let subCategories = '';
+let categories = [];
+
 //Random quantity of questions (3 to 10)
 const randomNumber = () => {
   return Math.floor(Math.random() * (10 - 3) + 3)
 }
 const quantity = randomNumber()
 
+//Get API categories
+async function getCategories() {
+  const response = await fetch('https://the-trivia-api.com/api/categories')
+  const jsonData = await response.json();
+  for (let x in jsonData) {
+    let obj = {};
+    obj[x] = jsonData[x]
+    categoriesData.push(obj)
+  }
+  categoriesGenerator(categoriesData);
+}
+getCategories()
+
 //API call
 async function fetchTriviaQuestion() {
-  const response = await fetch(`https://the-trivia-api.com/api/questions?limit=${quantity}`);
+  const APIlink = `https://the-trivia-api.com/api/questions?limit=${quantity}&categories=${subCategories}`
+  console.log(APIlink)
+  const response = await fetch(APIlink)
   const jsonData = await response.json();
   jsonData.forEach(el => {
     data.push(el)
-  })
+  });
   processData(data)
+  document.getElementById('currentCategories').innerHTML += categories.join(', ');
+  let chooseAnotherCategories = document.createElement('a');
+  chooseAnotherCategories.id = 'chooseAnotherCategories';
+  chooseAnotherCategories.innerHTML = '×';
+  chooseAnotherCategories.href = '.';
+  document.getElementById('currentCategories').append(chooseAnotherCategories)
 }
 
-//Initial data call
-fetchTriviaQuestion();
+//Categories generator
+function categoriesGenerator(category) {
+  let i = 0;
+  let catButtonSubmit = document.createElement('a');
+  catButtonSubmit.id = 'catButtonSubmit';
+  catButtonSubmit.innerHTML = 'Submit'
+  document.querySelector("#modal-container").append(catButtonSubmit);
+  category.map(el => {
+    let cat = `<input type="checkbox" class="category" name="theme" id="cat-${i}"><label id="catLabel-${i}" for="cat-${i}"></label>`
+    var htmlObject = document.createElement('li');
+    htmlObject.innerHTML = cat;
+    document.querySelector("#categoriesList").append(htmlObject);
+    document.getElementById(`catLabel-${i}`).innerHTML = Object.keys(el);
+    catButtonSubmit.addEventListener('click', chooseCategories)
+    i++
+  })
+}
 
-//Global variables
-const questionList = document.querySelector('.quizBody')
-const submitButton = document.querySelector("#nextButton");
-const answers = document.querySelectorAll('.answer')
-let iterator = document.createElement('span');
-let currentQuestion = 0;
-let result = 0;
-let i = 1;
-let answerLetters = ['a', 'b', 'c', 'd'];
-let indexOfCorrectAnswer;
-let data = [];
-
-
+//Add categories after Submit 
+const chooseCategories = () => {
+  let tempCategoryHolder = [];
+  document.querySelectorAll('.category').forEach(el => {
+    if (el.checked) {
+      let checkedCategory = (document.getElementById(`catLabel-${el.id.slice(-1)}`).innerHTML).replace(/&amp;/g, "&");
+      categoriesData.forEach(el => {
+        if (Object.keys(el)[0] === checkedCategory) {
+          tempCategoryHolder.push(Object.values(el)[0][0]);
+          categories.push(Object.keys(el))
+        }
+      })
+    }
+    document.querySelector(".modal-background").style.display = 'none';
+    document.querySelector("body > div.container").style.display = 'flex';
+  })
+  subCategories = tempCategoryHolder.join(',');
+  fetchTriviaQuestion();
+};
 //Question generator
 function processData(data) {
   document.querySelector("#questionDescription").innerHTML = data[currentQuestion].question;
   let answersList = [data[currentQuestion].incorrectAnswers[0], data[currentQuestion].incorrectAnswers[1], data[currentQuestion].incorrectAnswers[2], data[currentQuestion].correctAnswer];
-
   let shuffledAnswers = [];
   shuffle(answersList);
 
