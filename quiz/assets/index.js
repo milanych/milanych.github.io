@@ -14,6 +14,8 @@ let categoriesData = [];
 let subCategories = '';
 let categories = [];
 
+
+
 //Random quantity of questions (3 to 10)
 const randomNumber = () => {
   return Math.floor(Math.random() * (10 - 3) + 3)
@@ -35,7 +37,7 @@ getCategories()
 
 //API call
 async function fetchTriviaQuestion() {
-  const APIlink = `https://the-trivia-api.com/api/questions?limit=${quantity}&categories=${subCategories}`
+  const APIlink = `https://the-trivia-api.com/api/questions?limit=${quantity}&categories=${localStorage.getItem('subCategories')}`
   console.log(APIlink)
   const response = await fetch(APIlink)
   const jsonData = await response.json();
@@ -43,12 +45,24 @@ async function fetchTriviaQuestion() {
     data.push(el)
   });
   processData(data)
-  document.getElementById('currentCategories').innerHTML += categories.join(', ');
+  document.getElementById('currentCategories').innerHTML += localStorage.getItem('categories');
   let chooseAnotherCategories = document.createElement('a');
   chooseAnotherCategories.id = 'chooseAnotherCategories';
   chooseAnotherCategories.innerHTML = '×';
   chooseAnotherCategories.href = '.';
   document.getElementById('currentCategories').append(chooseAnotherCategories)
+  let chooseAnotherCategoriesButton = document.querySelector("#chooseAnotherCategories");
+  chooseAnotherCategoriesButton.addEventListener('click', () => {
+    console.log('hello')
+    localStorage.clear()
+  })
+}
+
+//Check if localStorage is not empty
+if (localStorage.getItem('subCategories')) {
+  document.querySelector("body > div.modal-background").style.display = 'none';
+  document.querySelector("body > div.container").style.display = 'flex';
+  fetchTriviaQuestion();
 }
 
 //Categories generator
@@ -69,6 +83,8 @@ function categoriesGenerator(category) {
   })
 }
 
+
+
 //Add categories after Submit 
 const chooseCategories = () => {
   let tempCategoryHolder = [];
@@ -86,6 +102,8 @@ const chooseCategories = () => {
     document.querySelector("body > div.container").style.display = 'flex';
   })
   subCategories = tempCategoryHolder.join(',');
+  localStorage.setItem('categories', categories.join(', '));
+  localStorage.setItem('subCategories', subCategories);
   fetchTriviaQuestion();
 };
 //Question generator
