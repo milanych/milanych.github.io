@@ -13,8 +13,7 @@ let currentQuestion = 0;
 let categoriesData = [];
 let subCategories = '';
 let categories = [];
-
-
+let tempCategoryHolder = [];
 
 //Random quantity of questions (3 to 10)
 const randomNumber = () => {
@@ -44,18 +43,8 @@ async function fetchTriviaQuestion() {
   jsonData.forEach(el => {
     data.push(el)
   });
-  processData(data)
-  document.getElementById('currentCategories').innerHTML += localStorage.getItem('categories');
-  let chooseAnotherCategories = document.createElement('a');
-  chooseAnotherCategories.id = 'chooseAnotherCategories';
-  chooseAnotherCategories.innerHTML = '×';
-  chooseAnotherCategories.href = '.';
-  document.getElementById('categoriesContainer').append(chooseAnotherCategories)
-  let chooseAnotherCategoriesButton = document.querySelector("#chooseAnotherCategories");
-  chooseAnotherCategoriesButton.addEventListener('click', () => {
-    console.log('hello')
-    localStorage.clear()
-  })
+  processData(data);
+  addCategoriesToText();
 }
 
 //Check if localStorage is not empty
@@ -68,26 +57,19 @@ if (localStorage.getItem('subCategories')) {
 //Categories generator
 function categoriesGenerator(category) {
   let i = 0;
-  let catButtonSubmit = document.createElement('a');
-  catButtonSubmit.id = 'catButtonSubmit';
-  catButtonSubmit.innerHTML = 'Submit'
-  document.querySelector("#modal-container").append(catButtonSubmit);
-  category.map(el => {
+  category.forEach(el => {
     let cat = `<input type="checkbox" class="category" name="theme" id="cat-${i}"><label id="catLabel-${i}" for="cat-${i}"></label>`
     var htmlObject = document.createElement('li');
     htmlObject.innerHTML = cat;
     document.querySelector("#categoriesList").append(htmlObject);
     document.getElementById(`catLabel-${i}`).innerHTML = Object.keys(el);
-    catButtonSubmit.addEventListener('click', chooseCategories)
     i++
   })
+  document.querySelector("#catButtonSubmit").addEventListener('click', chooseCategories)
 }
-
-
 
 //Add categories after Submit 
 const chooseCategories = () => {
-  let tempCategoryHolder = [];
   document.querySelectorAll('.category').forEach(el => {
     if (el.checked) {
       let checkedCategory = (document.getElementById(`catLabel-${el.id.slice(-1)}`).innerHTML).replace(/&amp;/g, "&");
@@ -97,17 +79,28 @@ const chooseCategories = () => {
           categories.push(Object.keys(el))
         }
       })
+      document.querySelector(".modal-background").style.display = 'none';
+      document.querySelector("body > div.container").style.display = 'flex';
+      subCategories = tempCategoryHolder.join(',');
+      localStorage.setItem('categories', categories.join(', '));
+      localStorage.setItem('subCategories', subCategories);
+      fetchTriviaQuestion();
+    } else {
+      document.querySelector('.attention').innerHTML = 'Choose at least one category!'
+      document.querySelector("#catButtonSubmit").addEventListener('click', () => {
+        document.querySelector("#modal-container").classList.add('horizontal-shaking');
+        setTimeout(() => {
+          document.querySelector("#modal-container").classList.remove('horizontal-shaking');
+        }, 500)
+      })
     }
-    document.querySelector(".modal-background").style.display = 'none';
-    document.querySelector("body > div.container").style.display = 'flex';
   })
-  subCategories = tempCategoryHolder.join(',');
-  localStorage.setItem('categories', categories.join(', '));
-  localStorage.setItem('subCategories', subCategories);
-  fetchTriviaQuestion();
 };
+
 //Question generator
 function processData(data) {
+  questionIterator();
+
   document.querySelector("#questionDescription").innerHTML = data[currentQuestion].question;
   let answersList = [data[currentQuestion].incorrectAnswers[0], data[currentQuestion].incorrectAnswers[1], data[currentQuestion].incorrectAnswers[2], data[currentQuestion].correctAnswer];
   let shuffledAnswers = [];
@@ -123,7 +116,6 @@ function processData(data) {
   document.querySelector("#label_b").innerHTML = shuffledAnswers[1];
   document.querySelector("#label_c").innerHTML = shuffledAnswers[2];
   document.querySelector("#label_d").innerHTML = shuffledAnswers[3];
-  questionIterator();
 }
 
 function isSelected() {
@@ -164,7 +156,7 @@ const createRepeatLink = () => {
 function questionIterator() {
   iterator.innerHTML = ` (${i}/${quantity})`
   document.querySelector(".questionHeading").appendChild(iterator)
-  i++;
+
 }
 
 function getResult() {
@@ -201,6 +193,7 @@ function answerChosen() {
   submitButton.addEventListener('click', () => {
     let selected = isSelected();
     if (selected) {
+      i++
       if (selected === answerLetters[indexOfCorrectAnswer]) {
         result++;
       }
@@ -211,3 +204,11 @@ function answerChosen() {
   })
 }
 answerChosen();
+
+const addCategoriesToText = () => {
+  document.getElementById('currentCategories').innerHTML = localStorage.getItem('categories');
+  let chooseAnotherCategoriesButton = document.querySelector("#chooseAnotherCategories");
+  chooseAnotherCategoriesButton.addEventListener('click', () => {
+    localStorage.clear()
+  })
+}

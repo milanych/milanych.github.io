@@ -13,7 +13,8 @@
       <div class="questionBody">
         <h1 class="questionHeading">Very dynamic quiz</h1>
         <div id="categoriesContainer">
-        <span id="currentCategories">Categories: </span>
+        <span id="currentCategories"></span>
+        <a id="chooseAnotherCategories" href=".">×</a>
         </div>
         <div class="quizBody">
           <span class="headingDivider"></span>
@@ -44,10 +45,12 @@
       <div id="modal-container">
         
         <div id="modal" class="modal">
-          <p>Choose categories of questions for the quiz</p>
+          <p>Choose categories of questions to start the quiz</p>
           <ul id="categoriesList">
           </ul>
+          <div class="attention"></div>
         </div>
+        <a id="catButtonSubmit">Submit</a>
 </div>
 </div>
 </body>
