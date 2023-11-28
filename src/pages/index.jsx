@@ -1,0 +1,5 @@
+export {default as MainPage} from '../pages/MainPage'
+export {default as PriceList} from '../pages/PriceList'
+export {default as ContactsPage} from '../pages/ContactsPage'
+export {default as GalleryPage} from '../pages/GalleryPage'
+export {default as AboutPage} from '../pages/AboutPage'
