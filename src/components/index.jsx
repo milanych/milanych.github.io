@@ -1,8 +1,0 @@
-export {default as Header} from './Header/Header'
-export {default as Footer} from './Footer/Footer'
-export {default as SliderResult} from './SliderResult/SliderResult'
-export {default as SliderDental} from './SliderDental/SliderDental'
-export {default as Contacts} from './Contacts/Contacts'
-export {default as Implants} from './Prices/Implants/Implants'
-export {default as Veneers} from './Prices/Veneers/Veneers'
-export {default as Treatment} from './Prices/Treatment/Treatment'
